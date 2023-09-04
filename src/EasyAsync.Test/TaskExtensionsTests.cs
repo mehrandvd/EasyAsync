@@ -18,9 +18,10 @@ namespace EasyAsync.Test
         public async Task Forget_WithException_MustWork()
         {
             var isThrown = false;
-            ThrowAsync(1).Forget(onException: ()=>
+            ThrowAsync(1).Forget(onException: (exception)=>
             {
-                isThrown = true;
+                if (exception.Message == "ERROR")
+                    isThrown = true;
             });
 
             await Task.Delay(TimeSpan.FromSeconds(2));
@@ -34,9 +35,10 @@ namespace EasyAsync.Test
             var isThrown = false;
             var cts = new CancellationTokenSource();
 
-            ThrowAsync(2).Forget(onException: () =>
+            ThrowAsync(2).Forget(onException: (exception) =>
             {
-                isThrown = true;
+                if (exception.Message == "ERROR")
+                    isThrown = true;
             }, cancellationToken: cts.Token);
 
             await Task.Delay(TimeSpan.FromSeconds(1));

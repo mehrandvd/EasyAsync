@@ -15,13 +15,14 @@ namespace EasyAsync
         /// <param name="task"></param>
         /// <param name="onException"></param>
         /// <param name="cancellationToken"></param>
-        public static void Forget(this Task task, Action? onException = null, CancellationToken cancellationToken = new CancellationToken())
+        public static void Forget(this Task task, Action<Exception>? onException = null, CancellationToken cancellationToken = new CancellationToken())
         {
             if (onException != null)
             {
                 task.ContinueWith(t =>
                     {
-                        onException();
+                        if (t.Exception?.InnerException != null) 
+                            onException(t.Exception.InnerException);
                     },
                     cancellationToken: cancellationToken,
                     TaskContinuationOptions.OnlyOnFaulted, TaskScheduler.Current
