@@ -2,6 +2,21 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <Title>EasyAsync</Title>
+    <Authors>Mehran Davoudi</Authors>
+    <Description>A library to make async even easier!</Description>
+    <RepositoryUrl>https://github.com/mehrandvd/EasyAsync</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/mehrandvd/EasyAsync</PackageProjectUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>async;await;c#;task</PackageTags>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
 
 </Project>

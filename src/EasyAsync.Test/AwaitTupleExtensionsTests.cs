@@ -60,7 +60,7 @@ namespace EasyAsync.Test
 
         private async Task<T> GetAsync<T>(T returnValue)
         {
-            await Task.Delay(1000);
+            await Task.Delay(10);
             return returnValue;
         }
     }
