@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EasyAsync.Test
 {
-    public class TaskExtensionsTests
+    public class ForgetTaskTests
     {
         [Fact]
         public async Task Forget_MustWork()
@@ -18,7 +18,7 @@ namespace EasyAsync.Test
         public async Task Forget_WithException_MustWork()
         {
             var isThrown = false;
-            ThrowAsync(1).Forget(onException: (exception)=>
+            ThrowAsync(1).Forget(onException: (exception) =>
             {
                 if (exception.Message == "ERROR")
                     isThrown = true;
