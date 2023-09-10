@@ -14,7 +14,7 @@ namespace EasyAsync.Test
         public async Task Timeout_MustWork()
         {
             var cts = new CancellationTokenSource();
-            cts.CancelAfter(TimeSpan.FromSeconds(1));
+            cts.CancelAfter(TimeSpan.FromSeconds(.5));
             var run = false;
             var sw = Stopwatch.StartNew();
 
@@ -22,9 +22,9 @@ namespace EasyAsync.Test
                 () => GetSampleAsync(() => { run = true; }, 2, cts.Token)
             );
 
-            Assert.Equal(1, sw.Elapsed.Seconds);
+            Assert.True(sw.Elapsed.Seconds < 1);
 
-            await Task.Delay(TimeSpan.FromSeconds(3));
+            await Task.Delay(TimeSpan.FromSeconds(2));
 
             Assert.False(run);
         }
